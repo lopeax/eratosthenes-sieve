@@ -5,7 +5,12 @@ Math.randomInt = function(min, max){
 Math.eratosthenesSieve = function(min, max){
     "use strict";
 
+    const MINIMUM = 2;
     const END = 10000000000;
+
+    if(min < MINIMUM){
+        min = MINIMUM;
+    }
 
     if(max < END){
         let start = min;
@@ -25,7 +30,6 @@ Math.eratosthenesSieve = function(min, max){
         let num = 0;
 
         while(i<=len){
-            // console.log(range);
             num = range[0];
             if(typeof num != 'undefined'){
                 primes.push(num);
@@ -51,6 +55,12 @@ Math.eratosthenesSieve = function(min, max){
 
 Math.randomEratosthenesPrime = function(min, max){
     "use strict";
+
+    const MINIMUM = 2;
+
+    if(min < MINIMUM){
+        min = MINIMUM;
+    }
 
     let arr = this.eratosthenesSieve(min, max);
 
