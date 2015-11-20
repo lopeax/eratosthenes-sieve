@@ -2,18 +2,14 @@ Math.randomInt = function(min, max){
     return Math.floor((Math.random() * (max - min))) + min
 }
 
-Math.eratosthenesSieve = function(min, max){
+Math.eratosthenesSieve = function(max){
     "use strict";
 
     const MINIMUM = 2;
     const END = 10000000000;
 
-    if(min < MINIMUM){
-        min = MINIMUM;
-    }
-
     if(max < END){
-        let start = min;
+        let start = MINIMUM;
         let range = [];
         let primes = [];
 
@@ -38,6 +34,7 @@ Math.eratosthenesSieve = function(min, max){
                 while(j<=len2){
                     if(range[j] % num == 0){
                         range.splice(j,1);
+                        // len--;
                         len2--;
                     }
                     j++;
@@ -53,16 +50,10 @@ Math.eratosthenesSieve = function(min, max){
     }
 }
 
-Math.randomEratosthenesPrime = function(min, max){
+Math.randomEratosthenesPrime = function(max){
     "use strict";
 
-    const MINIMUM = 2;
-
-    if(min < MINIMUM){
-        min = MINIMUM;
-    }
-
-    let arr = this.eratosthenesSieve(min, max);
+    let arr = this.eratosthenesSieve(max);
 
     return arr[this.randomInt(0, arr.length - 1)];
 }
@@ -73,7 +64,7 @@ Math.isEratosthenesPrime = function(num){
     const MINIMUM = 2;
 
     if(typeof num === 'number' && num === parseInt(num, 10) && num > MINIMUM){
-        let arr = this.eratosthenesSieve(MINIMUM, num + 1);
+        let arr = this.eratosthenesSieve(num + 1);
         if(arr.indexOf(num) > -1){
             return true;
         } else {
