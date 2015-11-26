@@ -63,14 +63,18 @@ Math.isEratosthenesPrime = function(num){
 
     const MINIMUM = 2;
 
-    if(typeof num === 'number' && num === parseInt(num, 10) && num > MINIMUM){
-        let arr = this.eratosthenesSieve(num + 1);
-        if(arr.indexOf(num) > -1){
-            return true;
+    if(typeof num === 'number' && num === parseInt(num, 10)){
+        if(num > MINIMUM){
+            let arr = this.eratosthenesSieve(num + 1);
+            if(arr.indexOf(num) > -1){
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            return `${num} is less than ${MINIMUM}`;
         }
     } else {
-        return num + ' is not an integer or more than ' + MINIMUM;
+        return `${num} is not an integer`;
     }
 }
